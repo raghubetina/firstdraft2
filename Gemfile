@@ -3,6 +3,12 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.0"
 
+gem "closure_tree"
+gem "faker"
+gem "indefinite_article"
+gem "devise"
+gem "rgl"
+gem "normalize_attributes"
 gem "rails", "~> 7.0.2", ">= 7.0.2.2"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"
