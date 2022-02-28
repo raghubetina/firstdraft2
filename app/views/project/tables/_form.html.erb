@@ -1,0 +1,175 @@
+<% was_validated = project_table.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(project_table, html: form_html_options) do |f| %>
+  <div class="mb-3">
+    <% project_class = "form-control" %>
+    <% project_was_invalid = project_table.errors.include?(:project) %>
+
+    <% if was_validated %>
+      <% if project_was_invalid %>
+        <% project_class << " is-invalid" %>
+      <% else %>
+        <% project_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :project %>
+
+    <%= f.text_field :project, class: project_class, placeholder: "Enter project" %>
+    <% if project_was_invalid %>
+      <% project_table.errors.full_messages_for(:project).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = project_table.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% project_table.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% underscored_class = "form-control" %>
+    <% underscored_was_invalid = project_table.errors.include?(:underscored) %>
+
+    <% if was_validated %>
+      <% if underscored_was_invalid %>
+        <% underscored_class << " is-invalid" %>
+      <% else %>
+        <% underscored_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :underscored %>
+
+    <%= f.text_field :underscored, class: underscored_class, placeholder: "Enter underscored" %>
+    <% if underscored_was_invalid %>
+      <% project_table.errors.full_messages_for(:underscored).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% underscored_plural_class = "form-control" %>
+    <% underscored_plural_was_invalid = project_table.errors.include?(:underscored_plural) %>
+
+    <% if was_validated %>
+      <% if underscored_plural_was_invalid %>
+        <% underscored_plural_class << " is-invalid" %>
+      <% else %>
+        <% underscored_plural_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :underscored_plural %>
+
+    <%= f.text_field :underscored_plural, class: underscored_plural_class, placeholder: "Enter underscored plural" %>
+    <% if underscored_plural_was_invalid %>
+      <% project_table.errors.full_messages_for(:underscored_plural).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% classified_class = "form-control" %>
+    <% classified_was_invalid = project_table.errors.include?(:classified) %>
+
+    <% if was_validated %>
+      <% if classified_was_invalid %>
+        <% classified_class << " is-invalid" %>
+      <% else %>
+        <% classified_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :classified %>
+
+    <%= f.text_field :classified, class: classified_class, placeholder: "Enter classified" %>
+    <% if classified_was_invalid %>
+      <% project_table.errors.full_messages_for(:classified).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% humanized_class = "form-control" %>
+    <% humanized_was_invalid = project_table.errors.include?(:humanized) %>
+
+    <% if was_validated %>
+      <% if humanized_was_invalid %>
+        <% humanized_class << " is-invalid" %>
+      <% else %>
+        <% humanized_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :humanized %>
+
+    <%= f.text_field :humanized, class: humanized_class, placeholder: "Enter humanized" %>
+    <% if humanized_was_invalid %>
+      <% project_table.errors.full_messages_for(:humanized).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% humanized_plural_class = "form-control" %>
+    <% humanized_plural_was_invalid = project_table.errors.include?(:humanized_plural) %>
+
+    <% if was_validated %>
+      <% if humanized_plural_was_invalid %>
+        <% humanized_plural_class << " is-invalid" %>
+      <% else %>
+        <% humanized_plural_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :humanized_plural %>
+
+    <%= f.text_field :humanized_plural, class: humanized_plural_class, placeholder: "Enter humanized plural" %>
+    <% if humanized_plural_was_invalid %>
+      <% project_table.errors.full_messages_for(:humanized_plural).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.button class: "btn btn-outline-secondary w-100" %>
+<% end %>

@@ -1,0 +1,77 @@
+<tr>
+  <td>
+    <%= table_relationship.origin %>
+  </td>
+
+  <td>
+    <%= table_relationship.destination %>
+  </td>
+
+  <td>
+    <%= table_relationship.scope %>
+  </td>
+
+  <td>
+    <%= table_relationship.name %>
+  </td>
+
+  <td>
+    <%= table_relationship.foreign_key %>
+  </td>
+
+  <td>
+    <%= table_relationship.key %>
+  </td>
+
+  <td>
+    <%= table_relationship.polymorphic %>
+  </td>
+
+  <td>
+    <%= table_relationship.foreign_key_owner %>
+  </td>
+
+  <td>
+    <%= table_relationship.dependent %>
+  </td>
+
+  <td>
+    <%= table_relationship.touch_option %>
+  </td>
+
+  <td>
+    <%= table_relationship.optional %>
+  </td>
+
+  <td>
+    <%= table_relationship.cardinality %>
+  </td>
+
+  <td>
+    <%= table_relationship.counter_cache %>
+  </td>
+
+  <td>
+    <%= table_relationship.source %>
+  </td>
+
+  <td>
+    <%= table_relationship.through %>
+  </td>
+
+  <td>
+    <div class="btn-group">
+      <%= link_to table_relationship, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-search-plus fa-fw"></i>
+      <% end %>
+
+      <%= link_to edit_project_table_relationship_url(table_relationship), class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-edit fa-fw"></i>
+      <% end %>
+
+      <%= link_to table_relationship, method: :delete, data: { confirm: "Do you really want to delete this relationship?" }, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-trash-alt fa-fw"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,49 @@
+<div class="card mb-3">
+  <h2 class="card-header h5">
+    <%= project %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>User</dt>
+      <dd><%= project.user %></dd>
+
+      <dt>Codename</dt>
+      <dd><%= project.codename %></dd>
+
+      <dt>Parent</dt>
+      <dd><%= project.parent %></dd>
+
+      <dt>Public</dt>
+      <dd><%= project.public %></dd>
+
+      <dt>Fork order</dt>
+      <dd><%= project.fork_order %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to project, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-search-plus"></i>'.html_safe
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_project_url(project), class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to project, method: :delete, data: { confirm: "Do you really want to delete this project?" }, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(project.updated_at) %> ago
+  </div>
+</div>

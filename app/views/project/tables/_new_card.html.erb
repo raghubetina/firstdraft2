@@ -1,0 +1,48 @@
+<%# TODO use a grid with a different number of columns so it's easier to have some overhang to indicate horizontal scrollability %>
+<div class="col-10 col-sm-7 col-md-5 col-lg-4 col-xl-3 me-3">
+  <div class="card shadow-sm">
+    <h2 class="card-header h6 bg-dark text-white">
+      <p class="lead m-0">
+        Add a table
+      </p>
+    </h2>
+
+    <div class="card-body">
+      <% project_table = Project::Table.new(project: project) %>
+
+      <% was_validated = project_table.errors.any? %>
+
+      <% form_html_options = { novalidate: true } %>
+
+      <%= form_for(project_table, html: form_html_options) do |f| %>
+        <%= f.hidden_field :project_id %>
+        
+        <div class="mb-3">
+          <% name_class = "form-control" %>
+          <% name_was_invalid = project_table.errors.include?(:name) %>
+
+          <% if was_validated %>
+            <% if name_was_invalid %>
+              <% name_class << " is-invalid" %>
+            <% else %>
+              <% name_class << " is-valid" %>
+            <% end %>
+          <% end %>
+
+          <%= f.label :name, class: "form-label" %>
+
+          <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+          <% if name_was_invalid %>
+            <% project_table.errors.full_messages_for(:name).each do |message| %>
+              <div class="invalid-feedback d-flex">
+                <%= message %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= f.button class: "btn btn-success w-100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="list-group-item d-flex align-items-center justify-content-between">
+  <span>
+    <code><%= relationship %></code>
+  </span>
+
+  <small class="text-muted">
+    <span
+      data-bs-toggle="tooltip"
+      data-bs-html="true"
+      title="Foreign key: <%= relationship.foreign_key_owner&.underscored_plural %>.<%= relationship.foreign_key %><%= ", Key: #{relationship.key}" if !relationship&.key&.primary_identifier %>">
+
+      <i class="fad fa-key fa-fw"></i>
+    </span>
+
+    <span
+      data-bs-toggle="tooltip"
+      data-bs-html="true"
+      title="Inverse of: <%= relationship.inverse_of %>">
+
+      <i class="fad fa-yin-yang fa-fw"></i>
+    </span>
+
+    <span>
+      <%= relationship.cardinality %>
+      
+      <%= relationship.destination %>
+
+      <!-- returns -->
+    
+      <%# case %>
+      <%# when relationship.many? %>
+        <%#= relationship.destination.humanized_plural %>
+      <%# when relationship.one? %>
+        <%#= relationship.destination.classified.indefinite_article %>
+        <%#= relationship.destination.humanized %>
+      <%# end %>
+    </span>
+  </small>
+</div>

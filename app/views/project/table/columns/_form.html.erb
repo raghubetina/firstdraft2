@@ -1,0 +1,103 @@
+<% was_validated = project_table_column.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(project_table_column, html: form_html_options) do |f| %>
+  <div class="mb-3">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = project_table_column.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% project_table_column.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% primary_descriptor_class = "form-check-input" %>
+    <% primary_descriptor_was_invalid = project_table_column.errors.include?(:primary_descriptor) %>
+
+    <% if was_validated %>
+      <% if primary_descriptor_was_invalid %>
+        <% primary_descriptor_class << " is-invalid" %>
+      <% else %>
+        <% primary_descriptor_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :primary_descriptor, class: "form-check-label" do %>
+      <%= f.check_box :primary_descriptor, class: primary_descriptor_class %> Primary descriptor
+    <% end %>
+    <% if primary_descriptor_was_invalid %>
+      <% project_table_column.errors.full_messages_for(:primary_descriptor).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% type_class = "form-control" %>
+    <% type_was_invalid = project_table_column.errors.include?(:type) %>
+
+    <% if was_validated %>
+      <% if type_was_invalid %>
+        <% type_class << " is-invalid" %>
+      <% else %>
+        <% type_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :type %>
+
+    <%= f.text_field :type, class: type_class, placeholder: "Enter type" %>
+    <% if type_was_invalid %>
+      <% project_table_column.errors.full_messages_for(:type).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% table_class = "form-control" %>
+    <% table_was_invalid = project_table_column.errors.include?(:table) %>
+
+    <% if was_validated %>
+      <% if table_was_invalid %>
+        <% table_class << " is-invalid" %>
+      <% else %>
+        <% table_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :table %>
+
+    <%= f.text_field :table, class: table_class, placeholder: "Enter table" %>
+    <% if table_was_invalid %>
+      <% project_table_column.errors.full_messages_for(:table).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.button class: "btn btn-outline-secondary w-100" %>
+<% end %>

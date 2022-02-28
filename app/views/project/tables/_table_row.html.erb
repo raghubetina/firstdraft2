@@ -1,0 +1,45 @@
+<tr>
+  <td>
+    <%= project_table.project %>
+  </td>
+
+  <td>
+    <%= project_table.name %>
+  </td>
+
+  <td>
+    <%= project_table.underscored %>
+  </td>
+
+  <td>
+    <%= project_table.underscored_plural %>
+  </td>
+
+  <td>
+    <%= project_table.classified %>
+  </td>
+
+  <td>
+    <%= project_table.humanized %>
+  </td>
+
+  <td>
+    <%= project_table.humanized_plural %>
+  </td>
+
+  <td>
+    <div class="btn-group">
+      <%= link_to project_table, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-search-plus fa-fw"></i>
+      <% end %>
+
+      <%= link_to edit_project_table_url(project_table), class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-edit fa-fw"></i>
+      <% end %>
+
+      <%= link_to project_table, method: :delete, data: { confirm: "Do you really want to delete this project_table?" }, class: "btn btn-sm btn-outline-secondary" do %>
+        <i class="fas fa-trash-alt fa-fw"></i>
+      <% end %>
+    </div>
+  </td>
+</tr>

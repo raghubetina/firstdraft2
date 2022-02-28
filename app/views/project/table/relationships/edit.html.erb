@@ -1,0 +1,17 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h2 class="card-header h5">
+        Edit Project Relationship #<%= @table_relationship.id %>
+      </h2>
+
+      <div class="card-body">
+        <%= render "form", table_relationship: @table_relationship %>
+
+        <%= link_to :back, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-chevron-left fa-fw"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

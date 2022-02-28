@@ -1,0 +1,125 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 class="display-4">
+      Project Relationships
+
+      <%= link_to new_project_table_relationship_path, class: "btn btn-lg btn-outline-secondary" do %>
+        <i class="fas fa-plus fa-fw"></i>
+      <% end %>
+    </h1>
+  </div>
+</div>
+
+<!-- Table example -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Origin
+            </th>
+
+            <th>
+              Destination
+            </th>
+
+            <th>
+              Scope
+            </th>
+
+            <th>
+              Name
+            </th>
+
+            <th>
+              Foreign key
+            </th>
+
+            <th>
+              Key
+            </th>
+
+            <th>
+              Polymorphic
+            </th>
+
+            <th>
+              Foreign key owner
+            </th>
+
+            <th>
+              Dependent
+            </th>
+
+            <th>
+              Touch option
+            </th>
+
+            <th>
+              Optional
+            </th>
+
+            <th>
+              Cardinality
+            </th>
+
+            <th>
+              Counter cache
+            </th>
+
+            <th>
+              Source
+            </th>
+
+            <th>
+              Through
+            </th>
+
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render collection: @table_relationships, partial: "table_row", as: :table_relationship %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Card deck example -->
+
+<% @table_relationships.each_slice(3) do |slice| %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= render collection: slice, partial: "card", as: :table_relationship %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- List group example -->
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h1 class="card-header h4 d-flex align-items-center justify-content-between">
+        Project Relationships
+
+        <%= link_to new_project_table_relationship_path, class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="fas fa-plus fa-fw"></i>
+        <% end %>
+      </h1>
+
+      <div class="list-group list-group-flush">
+        <%= render collection: @table_relationships, partial: "list_item", as: :table_relationship %>
+      </div>
+    </div>
+  </div>
+</div>

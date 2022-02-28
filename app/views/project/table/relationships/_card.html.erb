@@ -1,0 +1,79 @@
+<div class="card mb-3">
+  <h2 class="card-header h5">
+    Project Relationship #<%= table_relationship.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Origin</dt>
+      <dd><%= table_relationship.origin %></dd>
+
+      <dt>Destination</dt>
+      <dd><%= table_relationship.destination %></dd>
+
+      <dt>Scope</dt>
+      <dd><%= table_relationship.scope %></dd>
+
+      <dt>Name</dt>
+      <dd><%= table_relationship.name %></dd>
+
+      <dt>Foreign key</dt>
+      <dd><%= table_relationship.foreign_key %></dd>
+
+      <dt>Key</dt>
+      <dd><%= table_relationship.key %></dd>
+
+      <dt>Polymorphic</dt>
+      <dd><%= table_relationship.polymorphic %></dd>
+
+      <dt>Foreign key owner</dt>
+      <dd><%= table_relationship.foreign_key_owner %></dd>
+
+      <dt>Dependent</dt>
+      <dd><%= table_relationship.dependent %></dd>
+
+      <dt>Touch option</dt>
+      <dd><%= table_relationship.touch_option %></dd>
+
+      <dt>Optional</dt>
+      <dd><%= table_relationship.optional %></dd>
+
+      <dt>Cardinality</dt>
+      <dd><%= table_relationship.cardinality %></dd>
+
+      <dt>Counter cache</dt>
+      <dd><%= table_relationship.counter_cache %></dd>
+
+      <dt>Source</dt>
+      <dd><%= table_relationship.source %></dd>
+
+      <dt>Through</dt>
+      <dd><%= table_relationship.through %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to table_relationship, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-search-plus"></i>'.html_safe
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_project_table_relationship_url(table_relationship), class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to table_relationship, method: :delete, data: { confirm: "Do you really want to delete this relationship?" }, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(table_relationship.updated_at) %> ago
+  </div>
+</div>

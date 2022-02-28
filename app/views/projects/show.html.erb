@@ -1,0 +1,5 @@
+<div class="row d-flex flex-nowrap" style="overflow-x: auto;">
+  <%= render "project/tables/new_card", project: @project %>
+
+  <%= render collection: @project.tables.default_order, partial: "project/tables/card", as: :table %>
+</div>

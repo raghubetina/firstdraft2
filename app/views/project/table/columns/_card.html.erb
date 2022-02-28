@@ -1,0 +1,46 @@
+<div class="card mb-3">
+  <h2 class="card-header h5">
+    Project Table Column #<%= project_table_column.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Name</dt>
+      <dd><%= project_table_column.name %></dd>
+
+      <dt>Primary descriptor</dt>
+      <dd><%= project_table_column.primary_descriptor %></dd>
+
+      <dt>Type</dt>
+      <dd><%= project_table_column.type %></dd>
+
+      <dt>Table</dt>
+      <dd><%= project_table_column.table %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to project_table_column, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-search-plus"></i>'.html_safe
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_project_table_column_url(project_table_column), class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to project_table_column, method: :delete, data: { confirm: "Do you really want to delete this project_table_column?" }, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(project_table_column.updated_at) %> ago
+  </div>
+</div>

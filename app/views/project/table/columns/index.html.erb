@@ -1,0 +1,81 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 class="display-4">
+      Project Table Columns
+
+      <%= link_to new_project_table_column_path, class: "btn btn-lg btn-outline-secondary" do %>
+        <i class="fas fa-plus fa-fw"></i>
+      <% end %>
+    </h1>
+  </div>
+</div>
+
+<!-- Table example -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+
+            <th>
+              Primary descriptor
+            </th>
+
+            <th>
+              Type
+            </th>
+
+            <th>
+              Table
+            </th>
+
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render collection: @project_table_columns, partial: "table_row", as: :project_table_column %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Card deck example -->
+
+<% @project_table_columns.each_slice(3) do |slice| %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= render collection: slice, partial: "card", as: :project_table_column %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- List group example -->
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h1 class="card-header h4 d-flex align-items-center justify-content-between">
+        Project Table Columns
+
+        <%= link_to new_project_table_column_path, class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="fas fa-plus fa-fw"></i>
+        <% end %>
+      </h1>
+
+      <div class="list-group list-group-flush">
+        <%= render collection: @project_table_columns, partial: "list_item", as: :project_table_column %>
+      </div>
+    </div>
+  </div>
+</div>

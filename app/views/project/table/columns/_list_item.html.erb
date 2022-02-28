@@ -1,0 +1,27 @@
+<div class="list-group-item d-flex align-items-center justify-content-between">
+  <span class="<%= column.primary_descriptor? ? 'text-info' : '' %>">
+    <%= column %>
+  </span>
+
+  <small class="text-muted">
+    <% if column.primary_descriptor? %>
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="<%= column %> is the primary descriptor of a row in the <code><%= column.table.humanized_plural %></code> table">
+        <i class="fas fa-signature fa-fw"></i>
+      </span>
+    <% end %>
+
+    <% if column.primary_identifier? %>
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="<%= column %> is the primary key for the <code><%= column.table.humanized_plural %></code> table">
+        <i class="fad fa-key fa-fw"></i>
+      </span>
+    <% end %>
+
+    <% if column.unique_identifier? %>
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="<%= column %> uniquely identifies a row in the <code><%= column.table.humanized_plural %></code> table">
+        <i class="fas fa-fingerprint fa-fw"></i>
+      </span>
+    <% end %>
+
+    <%= column.type.demodulize %>
+  </small>
+</div>

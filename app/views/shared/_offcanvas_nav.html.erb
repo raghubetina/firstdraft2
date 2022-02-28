@@ -1,0 +1,22 @@
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvas-nav" aria-labelledby="offcanvas-navLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title display-6" id="offcanvas-navLabel">
+      firstdraft
+    </h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+
+  <div class="list-group list-group-flush">
+    <%= link_to root_path, class: "list-group-item list-group-item-action" do %>
+      <i class="fad fa-home fa-fw"></i>
+
+      Home
+    <% end %>
+
+    <%= link_to destroy_user_session_path, method: :delete, class: "list-group-item list-group-item-action" do %>
+      <i class="fad fa-sign-out-alt fa-fw"></i>
+
+      Sign out
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="card mb-3">
+  <h2 class="card-header h5">
+    Project Table Scope #<%= project_table_scope.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Name</dt>
+      <dd><%= project_table_scope.name %></dd>
+
+      <dt>Table</dt>
+      <dd><%= project_table_scope.table %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to project_table_scope, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-search-plus"></i>'.html_safe
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_project_table_scope_url(project_table_scope), class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to project_table_scope, method: :delete, data: { confirm: "Do you really want to delete this project_table_scope?" }, class: "btn w-100 btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(project_table_scope.updated_at) %> ago
+  </div>
+</div>

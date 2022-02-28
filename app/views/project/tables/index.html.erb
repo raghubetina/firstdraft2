@@ -1,0 +1,93 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1 class="display-4">
+      Project Tables
+
+      <%= link_to new_project_table_path, class: "btn btn-lg btn-outline-secondary" do %>
+        <i class="fas fa-plus fa-fw"></i>
+      <% end %>
+    </h1>
+  </div>
+</div>
+
+<!-- Table example -->
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Project
+            </th>
+
+            <th>
+              Name
+            </th>
+
+            <th>
+              Underscored
+            </th>
+
+            <th>
+              Underscored plural
+            </th>
+
+            <th>
+              Classified
+            </th>
+
+            <th>
+              Humanized
+            </th>
+
+            <th>
+              Humanized plural
+            </th>
+
+            <th>
+              Actions
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render collection: @project_tables, partial: "table_row", as: :project_table %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Card deck example -->
+
+<% @project_tables.each_slice(3) do |slice| %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card-deck">
+      <%= render collection: slice, partial: "card", as: :project_table %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- List group example -->
+
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h1 class="card-header h4 d-flex align-items-center justify-content-between">
+        Project Tables
+
+        <%= link_to new_project_table_path, class: "btn btn-sm btn-outline-secondary" do %>
+          <i class="fas fa-plus fa-fw"></i>
+        <% end %>
+      </h1>
+
+      <div class="list-group list-group-flush">
+        <%= render collection: @project_tables, partial: "list_item", as: :project_table %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<% links ||= [] %>
+
+<nav aria-label="breadcrumb" class="fs-4 mt-3" style="--bs-breadcrumb-divider: '›';">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "#", class: "breadcrumb-item fs-3 text-dark", data: { bs_toggle: 'offcanvas', bs_target: '#offcanvas-nav', aria_controls: 'offcanvas-nav' } do %>
+        <i class="fab fa-firstdraft"></i>
+      <% end %>
+    </li>
+
+    <% links.each do |link| %>
+      <% if link == links.last %>
+        <li class="breadcrumb-item active" aria-current="page">
+          <%= link[:content].html_safe %>
+        </li>
+      <% else %>
+        <li class="breadcrumb-item">
+          <%= link_to link[:href], class: "breadcrumb-item" do %>
+            <%= link[:content].html_safe %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+  </ol>
+</nav>

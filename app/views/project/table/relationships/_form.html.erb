@@ -1,0 +1,367 @@
+<% was_validated = table_relationship.errors.any? %>
+
+<% form_html_options = { novalidate: true, class: "mb-3" } %>
+
+<%= form_for(table_relationship, html: form_html_options) do |f| %>
+  <div class="mb-3">
+    <% origin_class = "form-control" %>
+    <% origin_was_invalid = table_relationship.errors.include?(:origin) %>
+
+    <% if was_validated %>
+      <% if origin_was_invalid %>
+        <% origin_class << " is-invalid" %>
+      <% else %>
+        <% origin_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :origin %>
+
+    <%= f.text_field :origin, class: origin_class, placeholder: "Enter origin" %>
+    <% if origin_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:origin).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% destination_class = "form-control" %>
+    <% destination_was_invalid = table_relationship.errors.include?(:destination) %>
+
+    <% if was_validated %>
+      <% if destination_was_invalid %>
+        <% destination_class << " is-invalid" %>
+      <% else %>
+        <% destination_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :destination %>
+
+    <%= f.text_field :destination, class: destination_class, placeholder: "Enter destination" %>
+    <% if destination_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:destination).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% scope_class = "form-control" %>
+    <% scope_was_invalid = table_relationship.errors.include?(:scope) %>
+
+    <% if was_validated %>
+      <% if scope_was_invalid %>
+        <% scope_class << " is-invalid" %>
+      <% else %>
+        <% scope_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :scope %>
+
+    <%= f.text_field :scope, class: scope_class, placeholder: "Enter scope" %>
+    <% if scope_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:scope).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = table_relationship.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% foreign_key_class = "form-control" %>
+    <% foreign_key_was_invalid = table_relationship.errors.include?(:foreign_key) %>
+
+    <% if was_validated %>
+      <% if foreign_key_was_invalid %>
+        <% foreign_key_class << " is-invalid" %>
+      <% else %>
+        <% foreign_key_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :foreign_key %>
+
+    <%= f.text_field :foreign_key, class: foreign_key_class, placeholder: "Enter foreign key" %>
+    <% if foreign_key_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:foreign_key).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% key_class = "form-control" %>
+    <% key_was_invalid = table_relationship.errors.include?(:key) %>
+
+    <% if was_validated %>
+      <% if key_was_invalid %>
+        <% key_class << " is-invalid" %>
+      <% else %>
+        <% key_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :key %>
+
+    <%= f.text_field :key, class: key_class, placeholder: "Enter alternate key" %>
+    <% if key_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:key).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% polymorphic_class = "form-check-input" %>
+    <% polymorphic_was_invalid = table_relationship.errors.include?(:polymorphic) %>
+
+    <% if was_validated %>
+      <% if polymorphic_was_invalid %>
+        <% polymorphic_class << " is-invalid" %>
+      <% else %>
+        <% polymorphic_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :polymorphic, class: "form-check-label" do %>
+      <%= f.check_box :polymorphic, class: polymorphic_class %> Polymorphic
+    <% end %>
+    <% if polymorphic_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:polymorphic).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% foreign_key_owner_class = "form-control" %>
+    <% foreign_key_owner_was_invalid = table_relationship.errors.include?(:foreign_key_owner) %>
+
+    <% if was_validated %>
+      <% if foreign_key_owner_was_invalid %>
+        <% foreign_key_owner_class << " is-invalid" %>
+      <% else %>
+        <% foreign_key_owner_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :foreign_key_owner %>
+
+    <%= f.text_field :foreign_key_owner, class: foreign_key_owner_class, placeholder: "Enter foreign key owner" %>
+    <% if foreign_key_owner_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:foreign_key_owner).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% dependent_class = "form-control" %>
+    <% dependent_was_invalid = table_relationship.errors.include?(:dependent) %>
+
+    <% if was_validated %>
+      <% if dependent_was_invalid %>
+        <% dependent_class << " is-invalid" %>
+      <% else %>
+        <% dependent_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :dependent %>
+
+    <%= f.text_field :dependent, class: dependent_class, placeholder: "Enter dependent" %>
+    <% if dependent_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:dependent).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% touch_option_class = "form-check-input" %>
+    <% touch_option_was_invalid = table_relationship.errors.include?(:touch_option) %>
+
+    <% if was_validated %>
+      <% if touch_option_was_invalid %>
+        <% touch_option_class << " is-invalid" %>
+      <% else %>
+        <% touch_option_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :touch_option, class: "form-check-label" do %>
+      <%= f.check_box :touch_option, class: touch_option_class %> Touch option
+    <% end %>
+    <% if touch_option_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:touch_option).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% optional_class = "form-check-input" %>
+    <% optional_was_invalid = table_relationship.errors.include?(:optional) %>
+
+    <% if was_validated %>
+      <% if optional_was_invalid %>
+        <% optional_class << " is-invalid" %>
+      <% else %>
+        <% optional_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :optional, class: "form-check-label" do %>
+      <%= f.check_box :optional, class: optional_class %> Optional
+    <% end %>
+    <% if optional_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:optional).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% cardinality_class = "form-control" %>
+    <% cardinality_was_invalid = table_relationship.errors.include?(:cardinality) %>
+
+    <% if was_validated %>
+      <% if cardinality_was_invalid %>
+        <% cardinality_class << " is-invalid" %>
+      <% else %>
+        <% cardinality_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :cardinality %>
+
+    <%= f.text_field :cardinality, class: cardinality_class, placeholder: "Enter cardinality" %>
+    <% if cardinality_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:cardinality).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-check">
+    <% counter_cache_class = "form-check-input" %>
+    <% counter_cache_was_invalid = table_relationship.errors.include?(:counter_cache) %>
+
+    <% if was_validated %>
+      <% if counter_cache_was_invalid %>
+        <% counter_cache_class << " is-invalid" %>
+      <% else %>
+        <% counter_cache_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :counter_cache, class: "form-check-label" do %>
+      <%= f.check_box :counter_cache, class: counter_cache_class %> Counter cache
+    <% end %>
+    <% if counter_cache_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:counter_cache).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% source_class = "form-control" %>
+    <% source_was_invalid = table_relationship.errors.include?(:source) %>
+
+    <% if was_validated %>
+      <% if source_was_invalid %>
+        <% source_class << " is-invalid" %>
+      <% else %>
+        <% source_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :source %>
+
+    <%= f.text_field :source, class: source_class, placeholder: "Enter source" %>
+    <% if source_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:source).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="mb-3">
+    <% through_class = "form-control" %>
+    <% through_was_invalid = table_relationship.errors.include?(:through) %>
+
+    <% if was_validated %>
+      <% if through_was_invalid %>
+        <% through_class << " is-invalid" %>
+      <% else %>
+        <% through_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :through %>
+
+    <%= f.text_field :through, class: through_class, placeholder: "Enter through" %>
+    <% if through_was_invalid %>
+      <% table_relationship.errors.full_messages_for(:through).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.button class: "btn btn-outline-secondary w-100" %>
+<% end %>
