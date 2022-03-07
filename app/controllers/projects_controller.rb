@@ -13,6 +13,22 @@ class ProjectsController < ApplicationController
     @breadcrumb_links = [
       { content: @project.to_s, href: project_path(@project) }
     ]
+
+    respond_to do |format|
+      format.html
+
+      format.json do
+        render json: @project.to_json(
+          include: {
+            tables: {
+              include: {
+                columns: {}
+              }
+            }
+          }
+        )
+      end
+    end
   end
 
   # GET /projects/new
