@@ -1,5 +1,43 @@
-<div class="row d-flex flex-nowrap" style="overflow-x: auto;">
-  <%= render "project/tables/new_card", project: @project %>
+<%# <div class="row d-flex flex-nowrap" style="overflow-x: auto;"> %>
+  <%#= render "project/tables/new_card", project: @project %>
 
-  <%= render collection: @project.tables.default_order, partial: "project/tables/card", as: :table %>
+  <%#= render collection: @project.tables.default_order, partial: "project/tables/card", as: :table %>
+<%# </div> %>
+
+<div class="main-content">
+  <%= render 'shared/breadcrumbs', links: (@breadcrumb_links || []) %>
+  <div class="tabs">Tabs here</div>
+  <div class="board">
+    <% @project.tables.default_order.each do |table| %>
+      <div class="list">
+        <div class="list-header">
+          <h2 class="h6 d-flex justify-content-between align-items-center bg-dark text-white p-2">
+            <p class="lead m-0">
+              <%= table %>
+            </p>
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="<%= table %> controls">
+              <%= link_to table, class: "btn w-100 btn-outline-secondary" do %>
+                <i class="fas fa-search-plus"></i>
+              <% end %>
+
+              <%= link_to edit_project_table_url(table), class: "btn btn-outline-secondary" do %>
+                <i class="fas fa-edit"></i>
+              <% end %>
+              
+              <%= link_to table, method: :delete, data: { confirm: "Do you really want to delete this table?" }, class: "btn w-100 btn-outline-secondary" do %>
+                <i class="fas fa-trash-alt"></i>
+              <% end %>
+            </div>
+          </h2>
+        </div>
+        <div class="list-body">
+          <%= render "project/tables/card", table: table %>
+        </div>
+        <div class="list-footer">
+          list footer
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

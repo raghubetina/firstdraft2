@@ -1,155 +1,133 @@
-<div class="col-10 col-sm-7 col-md-5 col-lg-4 col-xl-3 mx-3">
-  <div class="card shadow-sm">
-    <h2 class="card-header h6 d-flex justify-content-between align-items-center bg-dark text-white">
-      <p class="lead m-0">
-        <%= table %>
-      </p>
-
-      <div class="btn-group btn-group-sm" role="group" aria-label="<%= table %> controls">
-        <%= link_to table, class: "btn w-100 btn-outline-secondary" do %>
-          <i class="fas fa-search-plus"></i>
-        <% end %>
-
-        <%= link_to edit_project_table_url(table), class: "btn btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
-        <% end %>
+<div class="card shadow-sm">
+  <div class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-info">
+      <strong>
+        <%= table %> has
         
-        <%= link_to table, method: :delete, data: { confirm: "Do you really want to delete this table?" }, class: "btn w-100 btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
+        <%= pluralize(table.columns_count, 'column') %>
+      </strong>
+    </li>
+
+    <%= render collection: table.columns.includes(:table).default_order, partial: "project/table/columns/list_item", as: :column %>
+
+    <li class="list-group-item d-flex justify-content-end">
+      <%= link_to "Add a column", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
+    </li>
+    
+    <%= render "project/table/columns/new_list_item", table: table%>
+  </div>
+
+  <div class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-success">
+      <strong>
+        <%= table %> has
+
+        <%= pluralize(table.relationships_as_origin_count, 'relationship') %>
+      </strong>
+    </li>
+
+    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark">
+          Direct
+        </span>
+
+        <code>belongs_to</code>
       </div>
-    </h2>
 
-    <div class="list-group list-group-flush">
-      <li class="list-group-item list-group-item-info">
-        <strong>
-          <%= table %> has
-          
-          <%= pluralize(table.columns_count, 'column') %>
-        </strong>
-      </li>
+      <span class="badge rounded-pill bg-light text-dark">
+        <%= table.belongs_tos_count %>
+      </span>
+    </li>
 
-      <%= render collection: table.columns.includes(:table).default_order, partial: "project/table/columns/list_item", as: :column %>
+    <%= render collection: table.belongs_tos.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
 
-      <li class="list-group-item d-flex justify-content-end">
-        <%= link_to "Add a column", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
-      </li>
-      
-      <%= render "project/table/columns/new_list_item", table: table%>
-    </div>
-
-    <div class="list-group list-group-flush">
-      <li class="list-group-item list-group-item-success">
-        <strong>
-          <%= table %> has
-
-          <%= pluralize(table.relationships_as_origin_count, 'relationship') %>
-        </strong>
-      </li>
-
-      <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-light text-dark">
-            Direct
-          </span>
-
-          <code>belongs_to</code>
-        </div>
-
-        <span class="badge rounded-pill bg-light text-dark">
-          <%= table.belongs_tos_count %>
+    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark">
+          Direct
         </span>
-      </li>
 
-      <%= render collection: table.belongs_tos.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+        <code>has_one</code>
+      </div>
 
-      <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-light text-dark">
-            Direct
-          </span>
+      <span class="badge rounded-pill bg-light text-dark">
+        <%= table.direct_has_ones_count %>
+      </span>
+    </li>
 
-          <code>has_one</code>
-        </div>
-
-        <span class="badge rounded-pill bg-light text-dark">
-          <%= table.direct_has_ones_count %>
+    <%= render collection: table.direct_has_ones.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+    
+    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark">
+          Direct
         </span>
-      </li>
 
-      <%= render collection: table.direct_has_ones.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
-      
-      <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-light text-dark">
-            Direct
-          </span>
+        <code>has_many</code>
+      </div>
 
-          <code>has_many</code>
-        </div>
+      <span class="badge rounded-pill bg-light text-dark">
+        <%= table.direct_has_manies_count %>
+      </span>
+    </li>
 
-        <span class="badge rounded-pill bg-light text-dark">
-          <%= table.direct_has_manies_count %>
+    <%= render collection: table.direct_has_manies.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+
+    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark">
+          Indirect
         </span>
-      </li>
 
-      <%= render collection: table.direct_has_manies.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+        <code>has_one</code>
+      </div>
 
-      <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-light text-dark">
-            Indirect
-          </span>
+      <span class="badge rounded-pill bg-light text-dark">
+        <%= table.indirect_has_ones_count %>
+      </span>
+    </li>
 
-          <code>has_one</code>
-        </div>
+    <%= render collection: table.indirect_has_ones.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
 
-        <span class="badge rounded-pill bg-light text-dark">
-          <%= table.indirect_has_ones_count %>
+    <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark">
+          Indirect
         </span>
-      </li>
 
-      <%= render collection: table.indirect_has_ones.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+        <code>has_many</code>
+      </div>
 
-      <li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
-        <div>
-          <span class="badge bg-light text-dark">
-            Indirect
-          </span>
+      <span class="badge rounded-pill bg-light text-dark">
+        <%= table.indirect_has_manies_count %>
+      </span>
+    </li>
 
-          <code>has_many</code>
-        </div>
+    <%= render collection: table.indirect_has_manies.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
 
-        <span class="badge rounded-pill bg-light text-dark">
-          <%= table.indirect_has_manies_count %>
-        </span>
-      </li>
+    <li class="list-group-item d-flex justify-content-end">
+      <%= link_to "Add a relationship", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
+    </li>
+    
+    <%= render "project/table/columns/new_list_item", table: table%>
+  </div>
 
-      <%= render collection: table.indirect_has_manies.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
+  <div class="list-group list-group-flush">
+    <li class="list-group-item list-group-item-primary">
+      <strong>
+        <%= table %> has
 
-      <li class="list-group-item d-flex justify-content-end">
-        <%= link_to "Add a relationship", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
-      </li>
-      
-      <%= render "project/table/columns/new_list_item", table: table%>
-    </div>
+        <%= pluralize(table.scopes_count, 'scope') %>
+      </strong>
+    </li>
 
-    <div class="list-group list-group-flush">
-      <li class="list-group-item list-group-item-primary">
-        <strong>
-          <%= table %> has
+    <%= render collection: table.columns.default_order, partial: "project/table/columns/list_item", as: :column %>
 
-          <%= pluralize(table.scopes_count, 'scope') %>
-        </strong>
-      </li>
-
-      <%= render collection: table.columns.default_order, partial: "project/table/columns/list_item", as: :column %>
-
-      <li class="list-group-item d-flex justify-content-end">
-        <%= link_to "Add a column", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
-      </li>
-      
-      <%= render "project/table/columns/new_list_item", table: table%>
-    </div>
+    <li class="list-group-item d-flex justify-content-end">
+      <%= link_to "Add a column", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
+    </li>
+    
+    <%= render "project/table/columns/new_list_item", table: table%>
   </div>
 </div>

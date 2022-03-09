@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     ]
 
     respond_to do |format|
-      format.html
+      format.html { render :show, layout: "kanban" }
 
       format.json do
         render json: @project.to_json(
