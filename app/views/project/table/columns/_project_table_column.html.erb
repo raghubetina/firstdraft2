@@ -1,0 +1,27 @@
+<div id="<%= dom_id project_table_column %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Type:</strong>
+    <%= project_table_column.type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= project_table_column.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Primary descriptor:</strong>
+    <%= project_table_column.primary_descriptor %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Table:</strong>
+    <%= project_table_column.table_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this column", project_table_column, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this column', edit_project_table_column_path(project_table_column), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  name: MyString
+  primary_descriptor: false
+  table: one
+
+two:
+  type: 
+  name: MyString
+  primary_descriptor: false
+  table: two
