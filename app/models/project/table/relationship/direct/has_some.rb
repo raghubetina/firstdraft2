@@ -45,6 +45,23 @@ module Project::Table::Relationship::Direct::HasSome
       origin.primary_identifier
     end
 
+    if polymorphic
+      type_column_name = fk_column.underscored.chomp("_id") + "_type"
+
+      type_column = destination.columns.find_or_create_by(name: type_column_name) do |column|
+        column.type = "Project::Table::Column::String"
+      end
+
+      # if type_column.present?
+      #   raise ArgumentError, "A column with the name #{type_column_name} already exists in #{destination}. Please rename it or choose a different foreign key column name for this polymorphic relationship."
+      # end
+
+      # type_column = destination.columns.create(
+      #   name: type_column_name,
+      #   type: "Project::Table::Column::String"
+      # )
+    end
+
     if scope.nil? && scope_name
       scope = destination
         .scopes

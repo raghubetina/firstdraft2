@@ -148,16 +148,12 @@ namespace :dev do
           columns_attributes: [
             {
               name: "username",
-              type: "Project::Table::Column::String"
+              type: "Project::Table::Column::String",
+              primary_descriptor: true
             },
             {
               name: "mentionable_id",
               type: "Project::Table::Column::Integer",
-              primary_descriptor: true
-            },
-            {
-              name: "mentionable_type",
-              type: "Project::Table::Column::String"
             }
           ]
         }
@@ -220,7 +216,8 @@ namespace :dev do
           origin_name: "User",
           destination_name: "Mention",
           key: "username",
-          foreign_key: "username"
+          foreign_key: "username",
+          inverse_name: "user"
         },
         {
           origin_name: "Comment",
