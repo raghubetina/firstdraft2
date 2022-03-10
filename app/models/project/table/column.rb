@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: project_table_columns
@@ -40,7 +41,7 @@ class Project::Table::Column < ApplicationRecord
   validates :type, presence: true
 
   validates :underscored,
-    uniqueness: { scope: :table_id }
+    uniqueness: {scope: :table_id}
   # TODO: columns and associations names should be unique in the same namespace
 
   after_save :update_siblings_primary_descriptor, if: :saved_change_to_primary_descriptor?

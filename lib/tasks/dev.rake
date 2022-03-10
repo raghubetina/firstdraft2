@@ -142,6 +142,24 @@ namespace :dev do
               type: "Project::Table::Column::String"
             }
           ]
+        },
+        {
+          name: "Mention",
+          columns_attributes: [
+            {
+              name: "username",
+              type: "Project::Table::Column::String"
+            },
+            {
+              name: "mentionable_id",
+              type: "Project::Table::Column::Integer",
+              primary_descriptor: true
+            },
+            {
+              name: "mentionable_type",
+              type: "Project::Table::Column::String"
+            }
+          ]
         }
       ]
 
@@ -197,6 +215,24 @@ namespace :dev do
           destination_name: "Comment",
           foreign_key: "photo_id",
           counter_cache: true
+        },
+        {
+          origin_name: "User",
+          destination_name: "Mention",
+          key: "username",
+          foreign_key: "username"
+        },
+        {
+          origin_name: "Comment",
+          destination_name: "Mention",
+          foreign_key: "mentionable_id",
+          polymorphic: true
+        },
+        {
+          origin_name: "Photo",
+          destination_name: "Mention",
+          foreign_key: "mentionable_id",
+          polymorphic: true
         }
       ]
 

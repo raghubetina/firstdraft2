@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     @breadcrumb_links = [
-      { content: @project.to_s, href: project_path(@project) }
+      {content: @project.to_s, href: project_path(@project)}
     ]
 
     respond_to do |format|
@@ -37,14 +37,15 @@ class ProjectsController < ApplicationController
   end
 
   # GET /projects/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /projects
   def create
     @project = current_user.projects.build(project_params)
 
     if @project.save
-      redirect_to @project, notice: 'Project was successfully created.'
+      redirect_to @project, notice: "Project was successfully created."
     else
       render :new
     end
@@ -53,7 +54,7 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: 'Project was successfully updated.'
+      redirect_to @project, notice: "Project was successfully updated."
     else
       render :edit
     end
@@ -62,7 +63,7 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   def destroy
     @project.destroy
-    redirect_to projects_url, notice: 'Project was successfully destroyed.'
+    redirect_to projects_url, notice: "Project was successfully destroyed."
   end
 
   private
