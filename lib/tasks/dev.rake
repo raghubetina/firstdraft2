@@ -294,6 +294,22 @@ namespace :dev do
           destination_name: "Profile",
           through_name: "owner",
           source_name: "profile"
+        },
+        {
+          origin_name: "User",
+          destination_name: "Comment",
+          name: "mentioned_in_comments",
+          inverse_name: "mentioned_users",
+          through_name: "mentions",
+          source_name: "mentionable"
+        },
+        {
+          origin_name: "User",
+          destination_name: "Photo",
+          name: "mentioned_in_photos",
+          inverse_name: "mentioned_users",
+          through_name: "mentions",
+          source_name: "mentionable"
         }
       ]
 
