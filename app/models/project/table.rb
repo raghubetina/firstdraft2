@@ -64,22 +64,14 @@ class Project::Table < ApplicationRecord
   has_many :belongs_tos,
     class_name: "Relationship::Direct::BelongsTo",
     foreign_key: :origin_id,
-    dependent: :destroy do
-    def construct(**kwargs)
-      full_construct(**kwargs.merge(origin_table: proxy_association.owner))
-    end
-  end
+    dependent: :destroy
 
   has_many :direct_has_manies,
     class_name: "Relationship::Direct::HasMany",
     foreign_key: :origin_id,
     dependent: :destroy do
-    def construct(**kwargs)
-      full_construct(**kwargs.merge(origin_table: proxy_association.owner))
-    end
-
-    def construct_with_inverse(**kwargs)
-      full_construct_with_inverse(**kwargs.merge(origin_table: proxy_association.owner))
+    def add(**kwargs)
+      Project::Table::Relationship::Direct::HasSome.full_construct_with_inverse(**kwargs.merge(origin: proxy_association.owner, cardinality: :many))
     end
   end
 
@@ -87,12 +79,8 @@ class Project::Table < ApplicationRecord
     class_name: "Relationship::Direct::HasOne",
     foreign_key: :origin_id,
     dependent: :destroy do
-    def construct(**kwargs)
-      full_construct(**kwargs.merge(origin_table: proxy_association.owner))
-    end
-
-    def construct_with_inverse(**kwargs)
-      full_construct_with_inverse(**kwargs.merge(origin_table: proxy_association.owner))
+    def add(**kwargs)
+      Project::Table::Relationship::Direct::HasSome.full_construct_with_inverse(**kwargs.merge(origin: proxy_association.owner, cardinality: :one))
     end
   end
 
@@ -100,12 +88,8 @@ class Project::Table < ApplicationRecord
     class_name: "Relationship::Indirect::HasMany",
     foreign_key: :origin_id,
     dependent: :destroy do
-    def construct(**kwargs)
-      full_construct(**kwargs.merge(origin_table: proxy_association.owner))
-    end
-
-    def construct_with_inverse(**kwargs)
-      full_construct_with_inverse(**kwargs.merge(origin_table: proxy_association.owner))
+    def add(**kwargs)
+      Project::Table::Relationship::Indirect::HasSome.full_construct_with_inverse(**kwargs.merge(origin: proxy_association.owner))
     end
   end
 
@@ -113,12 +97,8 @@ class Project::Table < ApplicationRecord
     class_name: "Relationship::Indirect::HasOne",
     foreign_key: :origin_id,
     dependent: :destroy do
-    def construct(**kwargs)
-      full_construct(**kwargs.merge(origin_table: proxy_association.owner))
-    end
-
-    def construct_with_inverse(**kwargs)
-      full_construct_with_inverse(**kwargs.merge(origin_table: proxy_association.owner))
+    def add(**kwargs)
+      Project::Table::Relationship::Indirect::HasSome.full_construct_with_inverse(**kwargs.merge(origin: proxy_association.owner))
     end
   end
 

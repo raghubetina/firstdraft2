@@ -153,7 +153,7 @@ namespace :dev do
             },
             {
               name: "mentionable_id",
-              type: "Project::Table::Column::Integer",
+              type: "Project::Table::Column::Integer"
             }
           ]
         }
