@@ -177,40 +177,40 @@ class Project::Table < ApplicationRecord
     end
   end
 
-  def construct_has_some_and_inverse(
-    origin:, destination:, foreign_key:, cardinality:, name: nil, inverse_name: nil,
-    key: nil,
-    dependent: :remove,
-    polymorphic: false,
-    counter_cache: false,
-    optional: false,
-    touch: false
-  )
+  # def construct_has_some_and_inverse(
+  #   origin:, destination:, foreign_key:, cardinality:, name: nil, inverse_name: nil,
+  #   key: nil,
+  #   dependent: :remove,
+  #   polymorphic: false,
+  #   counter_cache: false,
+  #   optional: false,
+  #   touch: false
+  # )
 
-    relationships_as_origin.initial_relationship = construct(
-      name: name,
-      origin: origin,
-      destination: destination,
-      foreign_key: foreign_key,
-      key: key,
-      dependent: dependent,
-      polymorphic: polymorphic
-    )
+  #   relationships_as_origin.initial_relationship = construct(
+  #     name: name,
+  #     origin: origin,
+  #     destination: destination,
+  #     foreign_key: foreign_key,
+  #     key: key,
+  #     dependent: dependent,
+  #     polymorphic: polymorphic
+  #   )
 
-    inverse_relationship = BelongsTo.construct(
-      name: inverse_name,
-      origin: destination,
-      destination: origin,
-      foreign_key: foreign_key,
-      key: key,
-      polymorphic: polymorphic,
-      counter_cache: counter_cache,
-      optional: optional,
-      touch: false
-    )
+  #   inverse_relationship = BelongsTo.construct(
+  #     name: inverse_name,
+  #     origin: destination,
+  #     destination: origin,
+  #     foreign_key: foreign_key,
+  #     key: key,
+  #     polymorphic: polymorphic,
+  #     counter_cache: counter_cache,
+  #     optional: optional,
+  #     touch: false
+  #   )
 
-    initial_relationship.update_inverse(inverse_relationship)
-  end
+  #   initial_relationship.update_inverse(inverse_relationship)
+  # end
 
   def rgl_array
     result = []

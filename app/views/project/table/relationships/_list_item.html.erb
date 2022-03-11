@@ -4,6 +4,16 @@
   </span>
 
   <small class="flex-grow-auto text-muted text-truncate">
+      <% if relationship.polymorphic? %>
+      <span
+        data-bs-toggle="tooltip"
+        data-bs-html="true"
+        title="Polymorphic">
+
+        <i class="fad fa-shapes"></i>
+      </span>
+    <% end %>
+
     <% if relationship.direct? %>
       <span
         data-bs-toggle="tooltip"

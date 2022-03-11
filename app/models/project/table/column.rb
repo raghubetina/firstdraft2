@@ -30,6 +30,8 @@ class Project::Table::Column < ApplicationRecord
   belongs_to :table, counter_cache: true, touch: true
 
   belongs_to :foreign_type_for, class_name: "Column", optional: true
+  
+  has_one :foreign_type_column, class_name: "Column", foreign_key: "foreign_type_for_id", dependent: :destroy
 
   has_many :relationships_as_foreign_key,
     class_name: "Relationship",
