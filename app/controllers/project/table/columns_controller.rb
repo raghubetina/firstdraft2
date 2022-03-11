@@ -1,5 +1,5 @@
 class Project::Table::ColumnsController < ApplicationController
-  before_action :set_column, only: %i[ show edit update destroy ]
+  before_action :set_column, only: %i[show edit update destroy]
 
   # GET /project/table/columns or /project/table/columns.json
   def index
@@ -58,13 +58,14 @@ class Project::Table::ColumnsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_column
-      @column = Project::Table::Column.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def column_params
-      params.require(:project_table_column).permit(:type, :name, :primary_descriptor, :table_id, :unique_identifier)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_column
+    @column = Project::Table::Column.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def column_params
+    params.require(:project_table_column).permit(:type, :name, :primary_descriptor, :table_id, :unique_identifier)
+  end
 end

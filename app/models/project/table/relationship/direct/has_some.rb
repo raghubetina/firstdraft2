@@ -44,9 +44,9 @@ module Project::Table::Relationship::Direct::HasSome
       origin.primary_identifier
     end
 
-    other_table_relationship_with_same_fk = fk_column.
-      relationships_as_foreign_key.
-      where.not(origin: origin)
+    other_table_relationship_with_same_fk = fk_column
+      .relationships_as_foreign_key
+      .where.not(origin: origin)
 
     if other_table_relationship_with_same_fk.any?
       polymorphic = true

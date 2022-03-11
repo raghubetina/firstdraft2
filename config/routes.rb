@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       namespace :relationship do
         resources :directs
       end
-      resources :columns, :controller => "project/table/columns"
+      resources :columns, controller: "project/table/columns"
       resources :relationships
       resources :scopes
     end

@@ -1,5 +1,5 @@
 class Project::Table::Relationship::DirectsController < ApplicationController
-  before_action :set_project_table_relationship_direct, only: %i[ show edit update destroy ]
+  before_action :set_project_table_relationship_direct, only: %i[show edit update destroy]
 
   # GET /project/table/relationship/directs or /project/table/relationship/directs.json
   def index
@@ -58,13 +58,14 @@ class Project::Table::Relationship::DirectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_table_relationship_direct
-      @project_table_relationship_direct = Project::Table::Relationship::Direct.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def project_table_relationship_direct_params
-      params.require(:project_table_relationship_direct).permit(:origin_id, :destination_id, :scope_id, :name, :foreign_key_id, :key_id, :polymorphic, :foreign_key_owner_id, :dependent, :touch_option, :optional, :cardinality, :counter_cache, :type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_table_relationship_direct
+    @project_table_relationship_direct = Project::Table::Relationship::Direct.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def project_table_relationship_direct_params
+    params.require(:project_table_relationship_direct).permit(:origin_id, :destination_id, :scope_id, :name, :foreign_key_id, :key_id, :polymorphic, :foreign_key_owner_id, :dependent, :touch_option, :optional, :cardinality, :counter_cache, :type)
+  end
 end

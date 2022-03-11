@@ -20,7 +20,7 @@ class CreateProjectTables < ActiveRecord::Migration[6.1]
       t.integer :direct_has_manies_count, default: 0
       t.integer :indirect_has_ones_count, default: 0
       t.integer :indirect_has_manies_count, default: 0
-      t.boolean :user_account, default: :false
+      t.boolean :user_account, default: false
 
       t.timestamps
     end

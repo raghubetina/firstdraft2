@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: project_table_columns
@@ -27,7 +28,7 @@ class Project::Table::Column < ApplicationRecord
   include HasRubyIdentifierName
 
   belongs_to :table, counter_cache: true, touch: true
-  
+
   belongs_to :foreign_type_for, class_name: "Column", optional: true
 
   has_many :relationships_as_foreign_key,
