@@ -100,6 +100,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_25_104645) do
     t.integer "direct_has_manies_count", default: 0
     t.integer "indirect_has_ones_count", default: 0
     t.integer "indirect_has_manies_count", default: 0
+    t.boolean "user_account", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_project_tables_on_project_id"

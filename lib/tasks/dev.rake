@@ -31,21 +31,13 @@ namespace :dev do
       table_data = [
         {
           name: "User",
+          user_account: true,
           columns_attributes: [
             {
               name: "username",
               type: "Project::Table::Column::String",
               primary_descriptor: true,
               unique_identifier: true
-            },
-            {
-              name: "email",
-              type: "Project::Table::Column::String",
-              unique_identifier: true
-            },
-            {
-              name: "password_digest",
-              type: "Project::Table::Column::String"
             }
           ]
         },

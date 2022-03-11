@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: project_tables
@@ -22,6 +21,7 @@
 #  direct_has_manies_count            :integer          default("0")
 #  indirect_has_ones_count            :integer          default("0")
 #  indirect_has_manies_count          :integer          default("0")
+#  user_account                       :boolean          default("false")
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 #
@@ -158,6 +158,22 @@ class Project::Table < ApplicationRecord
         }
       ]
     )
+
+    if user_account?
+      columns.create(
+        [
+          {
+            name: "email",
+            type: "Project::Table::Column::String",
+            unique_identifier: true
+          },
+          {
+            name: "password_digest",
+            type: "Project::Table::Column::String"
+          }
+        ]
+      )
+    end
   end
 
   def construct_has_some_and_inverse(
