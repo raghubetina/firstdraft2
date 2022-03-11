@@ -17,15 +17,15 @@
             </p>
 
             <div class="btn-group btn-group-sm" role="group" aria-label="<%= table %> controls">
-              <%= link_to table, class: "btn w-100 btn-outline-secondary" do %>
+              <%= link_to table_path(table), class: "btn w-100 btn-outline-secondary" do %>
                 <i class="fas fa-search-plus"></i>
               <% end %>
 
-              <%= link_to edit_project_table_url(table), class: "btn btn-outline-secondary" do %>
+              <%= link_to edit_table_url(table), class: "btn btn-outline-secondary" do %>
                 <i class="fas fa-edit"></i>
               <% end %>
               
-              <%= link_to table, method: :delete, data: { confirm: "Do you really want to delete this table?" }, class: "btn w-100 btn-outline-secondary" do %>
+              <%= link_to table_path(table), method: :delete, data: { confirm: "Do you really want to delete this table?" }, class: "btn w-100 btn-outline-secondary" do %>
                 <i class="fas fa-trash-alt"></i>
               <% end %>
             </div>

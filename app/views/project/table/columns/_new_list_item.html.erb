@@ -5,7 +5,7 @@
 
   <% form_html_options = { novalidate: true, class: "mb-3" } %>
 
-  <%= form_for(column, html: form_html_options) do |f| %>
+  <%= form_with(model: column, url: table_columns_path(table), html: form_html_options) do |f| %>
     <%= f.hidden_field :table_id %>
     
     <div class="mb-3">

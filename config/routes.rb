@@ -3,16 +3,12 @@ Rails.application.routes.draw do
 
   root "projects#index"
 
-  resources :projects
-
-  namespace :project do
-    resources :tables
-
-    namespace :table do
+  resources :projects, shallow: true do
+    resources :tables, shallow: true do
       namespace :relationship do
         resources :directs
       end
-      resources :columns
+      resources :columns, :controller => "project/table/columns"
       resources :relationships
       resources :scopes
     end
