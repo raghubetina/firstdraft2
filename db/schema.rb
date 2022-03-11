@@ -33,8 +33,11 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_25_104645) do
     t.uuid "table_id", null: false
     t.boolean "starter", default: false
     t.boolean "primary_identifier", default: false
+    t.boolean "foreign_type", default: false
+    t.uuid "foreign_type_for_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["foreign_type_for_id"], name: "index_project_table_columns_on_foreign_type_for_id"
     t.index ["table_id"], name: "index_project_table_columns_on_table_id"
   end
 
@@ -136,6 +139,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_25_104645) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "project_table_columns", "project_table_columns", column: "foreign_type_for_id"
   add_foreign_key "project_table_columns", "project_tables", column: "table_id"
   add_foreign_key "project_table_relationships", "project_table_columns", column: "foreign_key_id"
   add_foreign_key "project_table_relationships", "project_table_columns", column: "key_id"

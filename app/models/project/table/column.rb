@@ -1,30 +1,34 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: project_table_columns
 #
-#  id                 :uuid             not null, primary key
-#  name               :string           not null
-#  underscored        :string
-#  primary_descriptor :boolean          default("false")
-#  unique_identifier  :boolean          default("false")
-#  type               :string
-#  table_id           :uuid             not null
-#  starter            :boolean          default("false")
-#  primary_identifier :boolean          default("false")
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                  :uuid             not null, primary key
+#  name                :string           not null
+#  underscored         :string
+#  primary_descriptor  :boolean          default("false")
+#  unique_identifier   :boolean          default("false")
+#  type                :string
+#  table_id            :uuid             not null
+#  starter             :boolean          default("false")
+#  primary_identifier  :boolean          default("false")
+#  foreign_type        :boolean          default("false")
+#  foreign_type_for_id :uuid
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 # Indexes
 #
-#  index_project_table_columns_on_table_id  (table_id)
+#  index_project_table_columns_on_foreign_type_for_id  (foreign_type_for_id)
+#  index_project_table_columns_on_table_id             (table_id)
 #
 
 class Project::Table::Column < ApplicationRecord
   include HasRubyIdentifierName
 
   belongs_to :table, counter_cache: true, touch: true
+  
+  belongs_to :foreign_type_for, class_name: "Column", optional: true
 
   has_many :relationships_as_foreign_key,
     class_name: "Relationship",

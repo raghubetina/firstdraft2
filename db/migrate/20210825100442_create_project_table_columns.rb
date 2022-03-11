@@ -11,6 +11,8 @@ class CreateProjectTableColumns < ActiveRecord::Migration[6.1]
       t.references :table, null: false, foreign_key: {to_table: :project_tables}, type: :uuid
       t.boolean :starter, default: false
       t.boolean :primary_identifier, default: false
+      t.boolean :foreign_type, default: false
+      t.references :foreign_type_for, null: true, foreign_key: {to_table: :project_table_columns}, type: :uuid
 
       t.timestamps
     end

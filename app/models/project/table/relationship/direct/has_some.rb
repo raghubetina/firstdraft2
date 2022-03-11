@@ -14,8 +14,7 @@ module Project::Table::Relationship::Direct::HasSome
 
     foreign_key: nil,
     key: nil,
-    dependent: :remove,
-    polymorphic: false
+    dependent: :remove
   )
 
     raise ArgumentError, "Must supply :destination or :destination_name" if destination.blank? && destination_name.blank?
@@ -45,11 +44,19 @@ module Project::Table::Relationship::Direct::HasSome
       origin.primary_identifier
     end
 
-    if polymorphic
+    other_table_relationship_with_same_fk = fk_column.
+      relationships_as_foreign_key.
+      where.not(origin: origin)
+
+    if other_table_relationship_with_same_fk.any?
+      polymorphic = true
+
       type_column_name = fk_column.underscored.chomp("_id") + "_type"
 
       type_column = destination.columns.find_or_create_by(name: type_column_name) do |column|
         column.type = "Project::Table::Column::String"
+        column.foreign_type = true
+        column.foreign_type_for = fk_column
       end
 
       # if type_column.present?

@@ -1,9 +1,15 @@
-<div class="list-group-item d-flex align-items-center">
+<div class="list-group-item d-flex align-items-center<%= " list-group-item-secondary" if column.foreign_type? %>">
   <span class="flex-grow-1 <%= column.primary_descriptor? ? 'text-info' : '' %>">
     <%= column %>
   </span>
 
   <small class="text-muted flex-grow-auto">
+    <% if column.foreign_type? %>
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="Is the foreign type for <%= column.foreign_type_for.underscored %>">
+        <i class="fad fa-typewriter"></i>
+      </span>
+    <% end %>
+
     <% if column.primary_descriptor? %>
       <span data-bs-toggle="tooltip" data-bs-html="true" title="<%= column %> is the primary descriptor of a row in the <code><%= column.table.humanized_plural %></code> table">
         <i class="fas fa-signature fa-fw"></i>

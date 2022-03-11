@@ -102,7 +102,7 @@ class Project::Table::Relationship < ApplicationRecord
   has_one :project, through: :origin_table
 
   validates :underscored,
-    uniqueness: {scope: :origin_id},
+    uniqueness: { scope: :origin_id },
     unless: :polymorphic?
   # TODO: columns and associations names should be unique in the same namespace
   # https://stackoverflow.com/questions/34049308/how-to-avoid-a-race-condition-when-validating-uniqueness-across-two-tables-in-ra?lq=1
