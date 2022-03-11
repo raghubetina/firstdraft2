@@ -123,4 +123,12 @@ class Project::Table::Relationship < ApplicationRecord
   def update_inverse(inverse:)
     update(inverse_of: inverse) && inverse.update(inverse_of: self)
   end
+
+  def direct?
+    self.class.ancestors.include?(Project::Table::Relationship::Direct)
+  end
+
+  def indirect?
+    self.class.ancestors.include?(Project::Table::Relationship::Indirect)
+  end
 end
