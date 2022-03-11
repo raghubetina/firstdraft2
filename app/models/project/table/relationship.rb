@@ -133,4 +133,8 @@ class Project::Table::Relationship < ApplicationRecord
   def indirect?
     self.class.ancestors.include?(Project::Table::Relationship::Indirect)
   end
+
+  def shorthand
+    "#{origin.classified}##{underscored}"
+  end
 end

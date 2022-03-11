@@ -5,8 +5,14 @@
 
   <small class="text-muted flex-grow-auto">
     <% if column.foreign_type? %>
-      <span data-bs-toggle="tooltip" data-bs-html="true" title="Is the foreign type for <%= column.foreign_type_for.underscored %>">
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="Contains the foreign table for <%= column.foreign_type_for.underscored %>">
         <i class="fad fa-typewriter"></i>
+      </span>
+    <% end %>
+
+    <% if column.relationships_as_foreign_key.any? %>
+    <span data-bs-toggle="tooltip" data-bs-html="true" title="Foreign key in <%= column.relationships_as_foreign_key.map(&:shorthand).uniq.to_sentence %>">
+        <i class="fad fa-lock-open-alt"></i>
       </span>
     <% end %>
 
