@@ -115,7 +115,6 @@ module Project::Table::Relationship::Direct::HasSome
     foreign_key: nil,
     key: nil,
     dependent: :remove,
-    polymorphic: false,
     counter_cache: false,
     optional: false,
     touch: false
@@ -131,8 +130,7 @@ module Project::Table::Relationship::Direct::HasSome
       scope_name: scope_name,
       foreign_key: foreign_key,
       key: key,
-      dependent: dependent,
-      polymorphic: polymorphic
+      dependent: dependent
     )
 
     inverse_relationship = Project::Table::Relationship::Direct::BelongsTo.full_construct(
@@ -144,7 +142,7 @@ module Project::Table::Relationship::Direct::HasSome
 
       foreign_key: foreign_key,
       key: key,
-      polymorphic: polymorphic,
+      polymorphic: initial_relationship.polymorphic,
       counter_cache: counter_cache,
       optional: optional,
       touch: touch

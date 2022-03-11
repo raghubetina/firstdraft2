@@ -214,14 +214,12 @@ namespace :dev do
         {
           origin_name: "Comment",
           destination_name: "Mention",
-          foreign_key: "mentionable_id",
-          polymorphic: true
+          foreign_key: "mentionable_id"
         },
         {
           origin_name: "Photo",
           destination_name: "Mention",
-          foreign_key: "mentionable_id",
-          polymorphic: true
+          foreign_key: "mentionable_id"
         }
       ]
 
