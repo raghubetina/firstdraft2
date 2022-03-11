@@ -46,12 +46,14 @@ class Project::Table::Relationship < ApplicationRecord
 
   belongs_to :origin,
     class_name: "Table",
-    counter_cache: :relationships_as_origin_count
+    counter_cache: :relationships_as_origin_count,
+    touch: true
 
   belongs_to :destination,
     class_name: "Table",
     optional: true,
-    counter_cache: :relationships_as_destination_count
+    counter_cache: :relationships_as_destination_count,
+    touch: true
 
   belongs_to :scope,
     optional: true

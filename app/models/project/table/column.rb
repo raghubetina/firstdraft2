@@ -24,7 +24,7 @@
 class Project::Table::Column < ApplicationRecord
   include HasRubyIdentifierName
 
-  belongs_to :table, counter_cache: true
+  belongs_to :table, counter_cache: true, touch: true
 
   has_many :relationships_as_foreign_key,
     class_name: "Relationship",
