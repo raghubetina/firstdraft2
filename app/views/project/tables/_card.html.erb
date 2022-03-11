@@ -107,10 +107,10 @@
     <%= render collection: table.indirect_has_manies.includes(:inverse_of, :foreign_key, :foreign_key_owner, :key, :destination).default_order, partial: "project/table/relationships/list_item", as: :relationship %>
 
     <li class="list-group-item d-flex justify-content-end">
-      <%= link_to "Add a relationship", "##{dom_id(table)}_new_column_list_item",  data: { bs_toggle: "collapse" } %>
+      <%= link_to "Add a relationship", "##{dom_id(table)}_new_relationship_direct_list_item",  data: { bs_toggle: "collapse" } %>
     </li>
     
-    <%= render "project/table/columns/new_list_item", table: table%>
+    <%= render "project/table/relationship/directs/new_list_item", table: table %>
   </div>
 
   <div class="list-group list-group-flush">

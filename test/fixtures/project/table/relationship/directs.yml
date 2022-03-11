@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  origin: one
+  destination: one
+  scope: one
+  name: MyString
+  foreign_key: one
+  key: one
+  polymorphic: false
+  foreign_key_owner: one
+  dependent: MyString
+  touch_option: false
+  optional: false
+  cardinality: MyString
+  counter_cache: false
+  type: 
+
+two:
+  origin: two
+  destination: two
+  scope: two
+  name: MyString
+  foreign_key: two
+  key: two
+  polymorphic: false
+  foreign_key_owner: two
+  dependent: MyString
+  touch_option: false
+  optional: false
+  cardinality: MyString
+  counter_cache: false
+  type: 

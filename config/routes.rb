@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :tables
 
     namespace :table do
+      namespace :relationship do
+        resources :directs
+      end
       resources :columns
       resources :relationships
       resources :scopes
