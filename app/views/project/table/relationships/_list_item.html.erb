@@ -1,9 +1,9 @@
-<div class="list-group-item d-flex align-items-center justify-content-between">
-  <span>
+<div class="list-group-item d-flex align-items-center">
+  <span class="flex-grow-1">
     <code><%= relationship %></code>
   </span>
 
-  <small class="text-muted">
+  <small class="flex-grow-auto text-muted text-truncate">
     <% if relationship.direct? %>
       <span
         data-bs-toggle="tooltip"
