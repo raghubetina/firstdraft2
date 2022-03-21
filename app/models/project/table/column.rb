@@ -53,7 +53,7 @@ class Project::Table::Column < ApplicationRecord
 
   after_save :update_siblings_primary_descriptor, if: :saved_change_to_primary_descriptor?
 
-  scope :default_order, -> { order(primary_descriptor: :desc, primary_identifier: :desc, starter: :desc, underscored: :asc) }
+  scope :default_order, -> { order(primary_descriptor: :desc, starter: :asc, primary_identifier: :desc, underscored: :asc) }
 
   scope :primary_descriptor, -> { where(primary_descriptor: true) }
 

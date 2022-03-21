@@ -1,4 +1,4 @@
-<div class="list-group-item d-flex align-items-center<%= " list-group-item-secondary" if column.foreign_type? %>">
+<div class="list-group-item d-flex align-items-center<%= " list-group-item-secondary" if (column.foreign_type? || column.starter?) %>">
   <span class="flex-grow-1 <%= column.primary_descriptor? ? 'text-info' : '' %>">
     <%= column %>
   </span>
