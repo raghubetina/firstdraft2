@@ -5,7 +5,7 @@
 
   <small class="text-muted flex-grow-auto">
     <% if column.foreign_type? %>
-      <span data-bs-toggle="tooltip" data-bs-html="true" title="Contains the foreign table for <%= column.foreign_type_for.underscored %>">
+      <span data-bs-toggle="tooltip" data-bs-html="true" title="Foreign table for <%= column.foreign_type_for.underscored %>">
         <i class="fad fa-typewriter"></i>
       </span>
     <% end %>
