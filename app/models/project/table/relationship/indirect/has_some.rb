@@ -9,6 +9,7 @@ module Project::Table::Relationship::Indirect::HasSome
 
     source: nil,
     source_name: nil,
+    source_type: nil,
 
     through: nil,
     through_name: nil,
@@ -71,7 +72,8 @@ module Project::Table::Relationship::Indirect::HasSome
 
       #### Indirect relationship attributes
       through: through,
-      source: source
+      source: source,
+      source_type: source_type
     )
   end
 
@@ -85,6 +87,7 @@ module Project::Table::Relationship::Indirect::HasSome
 
     source: nil,
     source_name: nil,
+    source_type: nil,
 
     through: nil,
     through_name: nil,
@@ -100,6 +103,7 @@ module Project::Table::Relationship::Indirect::HasSome
       destination_name: destination_name,
       source: source,
       source_name: source_name,
+      source_type: source_type,
       through: through,
       through_name: through_name,
       scope: scope

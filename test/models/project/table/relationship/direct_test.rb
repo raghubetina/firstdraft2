@@ -23,6 +23,7 @@
 #  relationships_as_through_count :integer          default("0")
 #  type                           :string
 #  underscored                    :string
+#  source_type                    :string
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #

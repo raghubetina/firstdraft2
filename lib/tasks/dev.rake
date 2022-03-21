@@ -89,7 +89,7 @@ namespace :dev do
           name: "Like",
           columns_attributes: [
             {
-              name: "photo_id",
+              name: "likeable_id",
               type: "Project::Table::Column::Integer"
             },
             {
@@ -103,7 +103,7 @@ namespace :dev do
           name: "Comment",
           columns_attributes: [
             {
-              name: "photo_id",
+              name: "commentable_id",
               type: "Project::Table::Column::Integer"
             },
             {
@@ -195,13 +195,25 @@ namespace :dev do
         {
           origin_name: "Photo",
           destination_name: "Like",
-          foreign_key: "photo_id",
+          foreign_key: "likeable_id",
           counter_cache: true
         },
         {
           origin_name: "Photo",
           destination_name: "Comment",
-          foreign_key: "photo_id",
+          foreign_key: "commentable_id",
+          counter_cache: true
+        },
+        {
+          origin_name: "Comment",
+          destination_name: "Comment",
+          foreign_key: "commentable_id",
+          counter_cache: true
+        },
+        {
+          origin_name: "Comment",
+          destination_name: "Like",
+          foreign_key: "likeable_id",
           counter_cache: true
         },
         {
@@ -246,7 +258,8 @@ namespace :dev do
           name: "liked_photos",
           inverse_name: "fans",
           through_name: "likes",
-          source_name: "photo"
+          source_name: "likeable",
+          source_type: "Photo"
         },
         {
           origin_name: "User",
@@ -254,7 +267,8 @@ namespace :dev do
           name: "commented_photos",
           inverse_name: "commenters",
           through_name: "comments",
-          source_name: "photo"
+          source_name: "commentable",
+          source_type: "Comment"
         },
         {
           origin_name: "User",
@@ -291,7 +305,8 @@ namespace :dev do
           name: "mentioned_in_comments",
           inverse_name: "mentioned_users",
           through_name: "mentions",
-          source_name: "mentionable"
+          source_name: "mentionable",
+          source_type: "Comment"
         },
         {
           origin_name: "User",
@@ -299,7 +314,8 @@ namespace :dev do
           name: "mentioned_in_photos",
           inverse_name: "mentioned_users",
           through_name: "mentions",
-          source_name: "mentionable"
+          source_name: "mentionable",
+          source_type: "Photo"
         }
       ]
 

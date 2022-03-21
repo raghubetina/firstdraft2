@@ -47,8 +47,12 @@ module Project::Table::Relationship::Direct::HasSome
     other_table_relationship_with_same_fk = fk_column
       .relationships_as_foreign_key
       .where.not(origin: origin)
+      .first
 
-    if other_table_relationship_with_same_fk.any?
+    if other_table_relationship_with_same_fk.present?
+      other_table_relationship_with_same_fk.update(polymorphic: true)
+      other_table_relationship_with_same_fk.inverse_of.update(polymorphic: true)
+
       polymorphic = true
 
       type_column_name = fk_column.underscored.chomp("_id") + "_type"

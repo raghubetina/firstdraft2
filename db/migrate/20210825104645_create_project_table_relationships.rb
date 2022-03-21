@@ -23,6 +23,7 @@ class CreateProjectTableRelationships < ActiveRecord::Migration[6.1]
       t.integer :relationships_as_through_count, default: 0
       t.string :type
       t.string :underscored
+      t.string :source_type
 
       t.timestamps
     end

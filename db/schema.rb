@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2021_08_25_104645) do
     t.integer "relationships_as_through_count", default: 0
     t.string "type"
     t.string "underscored"
+    t.string "source_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["destination_id"], name: "index_project_table_relationships_on_destination_id"
