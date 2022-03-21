@@ -11,7 +11,7 @@
     <% end %>
 
     <% if column.relationships_as_foreign_key.any? %>
-    <span data-bs-toggle="tooltip" data-bs-html="true" title="Foreign key in <%= column.relationships_as_foreign_key.map(&:shorthand).uniq.to_sentence %>">
+    <span data-bs-toggle="tooltip" data-bs-html="true" title="Foreign key for <%= column.relationships_as_foreign_key.map(&:shorthand).uniq.to_sentence %>">
         <i class="fad fa-lock-open-alt"></i>
       </span>
     <% end %>
