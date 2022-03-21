@@ -38,20 +38,29 @@ module Project::Table::Relationship::Direct::HasSome
 
     fk_column = destination.columns.find_by!(underscored: foreign_key)
 
+    # TODO: accept foreign_key_name _and_ foreign_key, throw exception if it doesn't exist; like other args.
+
     key_column = if key.present?
       origin.columns.find_by!(underscored: key)
     else
       origin.primary_identifier
     end
 
-    other_table_relationship_with_same_fk = fk_column
+    foreign_table_belongs_tos_with_same_fk = fk_column
       .relationships_as_foreign_key
+      .where(type: "Project::Table::Relationship::Direct::BelongsTo")
       .where.not(origin: origin)
 
-    if other_table_relationship_with_same_fk.any?
-      polymorphic = true
+    if foreign_table_belongs_tos_with_same_fk.any?
+      as_polymorphic = fk_column.underscored.chomp("_id")
 
-      type_column_name = fk_column.underscored.chomp("_id") + "_type"
+      foreign_table_belongs_tos_with_same_fk.each do |belongs_to|
+        belongs_to.update(polymorphic: true)
+      
+        belongs_to.inverse_of.update(as_polymorphic: as_polymorphic)
+      end
+
+      type_column_name = as_polymorphic + "_type"
 
       type_column = destination.columns.find_or_create_by(name: type_column_name) do |column|
         column.type = "Project::Table::Column::String"
@@ -62,11 +71,6 @@ module Project::Table::Relationship::Direct::HasSome
       # if type_column.present?
       #   raise ArgumentError, "A column with the name #{type_column_name} already exists in #{destination}. Please rename it or choose a different foreign key column name for this polymorphic relationship."
       # end
-
-      # type_column = destination.columns.create(
-      #   name: type_column_name,
-      #   type: "Project::Table::Column::String"
-      # )
     end
 
     if scope.nil? && scope_name
@@ -93,7 +97,7 @@ module Project::Table::Relationship::Direct::HasSome
       foreign_key_owner: destination,
       foreign_key: fk_column,
       key: key_column,
-      polymorphic: polymorphic,
+      as_polymorphic: as_polymorphic,
 
       ##### has_some attributes
       dependent: dependent
@@ -142,7 +146,7 @@ module Project::Table::Relationship::Direct::HasSome
 
       foreign_key: foreign_key,
       key: key,
-      polymorphic: initial_relationship.polymorphic,
+      polymorphic: initial_relationship.as_polymorphic.present?,
       counter_cache: counter_cache,
       optional: optional,
       touch: touch

@@ -4,11 +4,21 @@
   </span>
 
   <small class="flex-grow-auto text-muted text-truncate">
-      <% if relationship.polymorphic? %>
+    <% if relationship.polymorphic? %>
       <span
         data-bs-toggle="tooltip"
         data-bs-html="true"
         title="Polymorphic">
+
+        <i class="fad fa-shapes"></i>
+      </span>
+    <% end %>
+
+    <% if relationship.as_polymorphic.present? %>
+      <span
+        data-bs-toggle="tooltip"
+        data-bs-html="true"
+        title="As: <%= relationship.as_polymorphic %>">
 
         <i class="fad fa-shapes"></i>
       </span>
@@ -21,6 +31,16 @@
         title="Foreign key: <%= relationship.foreign_key_owner&.underscored_plural %>.<%= relationship.foreign_key %><%= ", Key: #{relationship.key}" if !relationship&.key&.primary_identifier %>">
 
         <i class="fad fa-lock-open-alt"></i>
+      </span>
+    <% end %>
+
+    <% if relationship.indirect? %>
+      <span
+        data-bs-toggle="tooltip"
+        data-bs-html="true"
+        title="Through: <%= relationship.through.underscored %>, source: <%= relationship.source.underscored %><%= ", source type: #{relationship.source.source_type}" if relationship.source.polymorphic? %>">
+
+        <i class="fas fa-road"></i>
       </span>
     <% end %>
 

@@ -54,6 +54,12 @@ module Project::Table::Relationship::Indirect::HasSome
       Project::Table::Relationship::Indirect::HasMany
     end
 
+    # TODO: Support polymorphic :through association. Using scopes? Or is it equivalent to supporting delegated types?
+
+    if through.polymorphic?
+      raise ArgumentError, "Through polymorphic not yet supported. Origin #{origin}, destination #{destination}, through #{through}, source #{source}"
+    end
+
     if name.blank?
       if relationship_class == Project::Table::Relationship::Indirect::HasMany
         name = source.underscored.pluralize
@@ -85,6 +91,7 @@ module Project::Table::Relationship::Indirect::HasSome
 
     source: nil,
     source_name: nil,
+    source_type: nil,
 
     through: nil,
     through_name: nil,

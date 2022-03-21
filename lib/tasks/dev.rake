@@ -89,7 +89,7 @@ namespace :dev do
           name: "Like",
           columns_attributes: [
             {
-              name: "photo_id",
+              name: "likeable_id",
               type: "Project::Table::Column::Integer"
             },
             {
@@ -195,13 +195,25 @@ namespace :dev do
         {
           origin_name: "Photo",
           destination_name: "Like",
-          foreign_key: "photo_id",
+          foreign_key: "likeable_id",
           counter_cache: true
         },
         {
           origin_name: "Photo",
           destination_name: "Comment",
-          foreign_key: "photo_id",
+          counter_cache: true
+        },
+        # TODO: Get ancestry type relationships working
+        # {
+        #   origin_name: "Comment",
+        #   destination_name: "Comment",
+        #   foreign_key: "commentable_id",
+        #   counter_cache: true
+        # },
+        {
+          origin_name: "Comment",
+          destination_name: "Like",
+          foreign_key: "likeable_id",
           counter_cache: true
         },
         {
@@ -235,8 +247,15 @@ namespace :dev do
               .merge(origin: origin)
           )
 
-        ap initial.errors.full_messages if initial.errors.any?
-        ap inverse.errors.full_messages if inverse.errors.any?
+        if initial.errors.any?
+          ap initial.errors.full_messages
+          ap initial
+        end
+
+        if inverse.errors.any?
+          ap inverse.errors.full_messages
+          ap inverse
+        end
       end
 
       indirect_has_somes = [
@@ -246,7 +265,7 @@ namespace :dev do
           name: "liked_photos",
           inverse_name: "fans",
           through_name: "likes",
-          source_name: "photo"
+          source_name: "likeable"
         },
         {
           origin_name: "User",
@@ -284,23 +303,23 @@ namespace :dev do
           destination_name: "Profile",
           through_name: "owner",
           source_name: "profile"
-        },
-        {
-          origin_name: "User",
-          destination_name: "Comment",
-          name: "mentioned_in_comments",
-          inverse_name: "mentioned_users",
-          through_name: "mentions",
-          source_name: "mentionable"
-        },
-        {
-          origin_name: "User",
-          destination_name: "Photo",
-          name: "mentioned_in_photos",
-          inverse_name: "mentioned_users",
-          through_name: "mentions",
-          source_name: "mentionable"
         }
+        # {
+        #   origin_name: "User",
+        #   destination_name: "Comment",
+        #   name: "mentioned_in_comments",
+        #   inverse_name: "mentioned_users",
+        #   through_name: "mentions",
+        #   source_name: "mentionable"
+        # },
+        # {
+        #   origin_name: "User",
+        #   destination_name: "Photo",
+        #   name: "mentioned_in_photos",
+        #   inverse_name: "mentioned_users",
+        #   through_name: "mentions",
+        #   source_name: "mentionable"
+        # }
       ]
 
       indirect_has_somes.each do |indirect_has_some|
@@ -314,8 +333,15 @@ namespace :dev do
             .merge(origin: origin)
         )
 
-        ap initial.errors.full_messages if initial.errors.any?
-        ap inverse.errors.full_messages if inverse.errors.any?
+        if initial.errors.any?
+          ap initial.errors.full_messages
+          ap initial
+        end
+
+        if inverse.errors.any?
+          ap inverse.errors.full_messages
+          ap inverse
+        end
       end
 
       # Create project with many tables, columns, and associations

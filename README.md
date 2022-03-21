@@ -74,4 +74,7 @@ table.indirect_has_manies.construct_with_inverse(
 ## Specs to be written
 
  - Cardinality of indirect associations correctly inferred
- - Polymorphic associations correctly detected, type column added
+ - Polymorphic associations:
+    - correctly detected when same fk column used more than once
+    - type column added
+    - `:as` added to `has_many`

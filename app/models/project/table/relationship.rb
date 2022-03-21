@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: project_table_relationships
@@ -25,6 +24,8 @@
 #  relationships_as_through_count :integer          default("0")
 #  type                           :string
 #  underscored                    :string
+#  source_type                    :string
+#  as_polymorphic                 :string
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #
@@ -117,6 +118,12 @@ class Project::Table::Relationship < ApplicationRecord
   scope :start_at, ->(table) { where(origin_id: table.id) }
 
   scope :end_at, ->(table) { where(destination_id: table.id) }
+
+  before_save :set_source_type
+
+  def set_source_type
+    self.source_type = destination.classified
+  end
 
   def to_s
     underscored

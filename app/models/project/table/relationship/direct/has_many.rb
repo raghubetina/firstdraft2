@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: project_table_relationships
@@ -25,6 +24,8 @@
 #  relationships_as_through_count :integer          default("0")
 #  type                           :string
 #  underscored                    :string
+#  source_type                    :string
+#  as_polymorphic                 :string
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #
